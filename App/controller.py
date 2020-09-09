@@ -37,6 +37,13 @@ recae sobre el controlador.
 #  Inicializacion del catalogo
 # ___________________________________________________
 
+def initCatalog():
+    """
+    Llama la funcion de inicializacion del catalogo del modelo.
+    """
+    # catalog es utilizado para interactuar con el modelo
+    catalog = model.newCatalog()
+    return catalog
 
 
 
@@ -44,3 +51,76 @@ recae sobre el controlador.
 #  Funciones para la carga de datos y almacenamiento
 #  de datos en los modelos
 # ___________________________________________________
+
+def loadData(catalog, moviesfile, tagsfile, moviestagsfile):
+
+    loadMovies(catalog, moviesfile)
+    loadTags(catalog, tagsfile)
+    loadMoviesTags(catalog, moviestagsfile)
+
+
+def loadMovies(catalog, moviesfile):
+    moviesfile= cf.data_dir + moviesfile
+    input_file= cvs.DictReader(open(moviesfile))
+    for movies in input_file:
+        model.addMovie(catalog, movie)
+        directors= movie["director"].split(",")
+        for director in directors:
+            model.addMovieDirector(catalog, director.strip(), movie)
+
+
+def loadTags(catalog, tagsfile):
+    tagsfile= cf.data_dir + tagsfile
+    input_file= cvs.DictReader(open(tagsfile))
+    for tag in input_file:
+        model.addTag(catalog, tag)
+
+
+def loadMoviesTags(catalog, moviestagsfile):
+    moviestagsfile= cf.data_dir + moviestagsfile
+    input_file = cvs.DictReader(open(moviestagsfile))
+    for tag in input_file:
+        model.addMovieTag(catalog, tag)
+
+
+        
+# ___________________________________________________
+#  Funciones para consultas
+# ___________________________________________________
+
+
+def moviesSize(catalog):
+    return model.moviesSize(catalog)
+
+
+def directorsSize(catalog):
+    return model.directorsSize(catalog)
+
+def tagsSize(catalog):
+    return model.tagsSize(catalog)
+
+def getMoviesByDirector(catalog, directorname):
+    directorinfo= model.getMoviesByDirector(catalog, directorname)
+    return directorinfo
+
+def getMoviesByTag(catalog, tagname):
+    movies= model.getMoviesByTag(catalog, tagname)
+    return movies
+
+def getMoviesByYear(catalog, year):
+    movies= model.getMoviesByYear(catalog, year)
+    return movies
+
+
+
+
+
+
+
+
+
+
+
+
+
+
