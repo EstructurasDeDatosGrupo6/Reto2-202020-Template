@@ -53,6 +53,7 @@ def initCatalog():
 #  de datos en los modelos
 # ___________________________________________________
 
+
 def loadData(catalog, moviesfile, tagsfile, moviestagsfile):
 
     loadMovies(catalog, moviesfile)
@@ -111,6 +112,7 @@ def getMoviesByTag(catalog, tagname):
 def getMoviesByYear(catalog, year):
     movies= model.getMoviesByYear(catalog, year)
     return movies
+
 
 
 

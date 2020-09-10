@@ -43,7 +43,7 @@ operación seleccionada.
 
 
 # ___________________________________________________
-#  Funciones para imprimir la inforamación de
+#  Funciones para imprimir la información de
 #  respuesta.  La vista solo interactua con
 #  el controlador.
 # ___________________________________________________
@@ -53,3 +53,44 @@ operación seleccionada.
 # ___________________________________________________
 #  Menu principal
 # ___________________________________________________
+
+def printMenu():
+    print("Bienvenido")
+    print("1- Cargar peliculas")
+    print("2- Descubrir productoras de cine")
+    print("3- Conocer a un director")
+    print("4- Conocer a un actor")
+    print("5- Entender un género cinmatográfico")
+    print("6- Encontrar películas por país")
+
+
+"""
+Menu principal
+"""
+
+while True:
+    printMenu()
+    inputs = input('Seleccione una opción para continuar\n')
+
+    if int(inputs[0]) == 1:
+        print("Inicializando Catálogo ....")
+        cont = controller.initCatalog()
+       
+
+    elif int(inputs[0]) == 2:
+        print("Cargando información de los archivos ....")
+        controller.loadData(cont, moviesfile, tagsfile, moviestagsfile)
+        print('Peliculas cargadas: ' + str(controller.moviesSize(cont)))
+        print('Autores cargados: ' + str(controller.authorsSize(cont)))
+        print('Géneros cargados: ' + str(controller.tagsSize(cont)))
+        
+
+    elif int(inputs[0]) == 3:
+        
+    elif int(inputs[0]) == 4:
+        
+    elif int(inputs[0]) == 5:
+        
+    else:
+        sys.exit(0)
+sys.exit(0)
