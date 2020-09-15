@@ -217,6 +217,20 @@ def addMovieTag(catalog, tag):
 # Funciones de consulta
 # ==============================
 
+def moviesFromproducer (productora, lstMovies):
+
+    producer = mp.get(lstMovies['production_companies'],productora)
+    catalog = {productora: None}
+    catalog[productora] = mp.newMap(50000,109345121,'CHAINING',0.4,None)
+    if producer:
+        mp.put(catalog[productora],producer)
+    return catalog
+
+        
+        
+
+
+
 
 
 
@@ -302,5 +316,8 @@ def compareYears(year1, year2):
         return 1
     else:
         return 0
+
+
+
 
 
