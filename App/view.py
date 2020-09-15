@@ -37,9 +37,8 @@ operación seleccionada.
 # ___________________________________________________
 #  Ruta a los archivos
 # ___________________________________________________
-
-
-
+movies = 'Data\MoviesCastingRaw-small.csv'
+moviesCasting = 'Data\MoviesCastingRaw-small.csv'
 
 
 # ___________________________________________________
