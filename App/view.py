@@ -29,10 +29,13 @@ from DISClib.DataStructures import listiterator
 assert config
 from DISClib.ADT import map as mp
 from DISClib.DataStructures import mapentry as me
+<<<<<<< HEAD
 
 
 
 
+=======
+>>>>>>> 36aa8ee92875c48872ac32a3512f3f3b990ab57d
 
 """
 La vista se encarga de la interacción con el usuario.
@@ -90,7 +93,7 @@ while True:
         #print('Autores cargados: ' + str(controller.authorsSize(cont)))
         #print('Géneros cargados: ' + str(controller.tagsSize(cont)))
         
-# Pixar Animation Studios
+
     elif int(inputs[0]) == 3:
         
 
@@ -110,6 +113,7 @@ while True:
         promedio = suma/lt.size(retorno)
         print("Cantidad : ",lt.size(retorno))
         print("Promedio: ",str(promedio))
+        #print("porquenofunciona")
         
         
     #elif int(inputs[0]) == 4:
