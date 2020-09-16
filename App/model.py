@@ -26,6 +26,7 @@ from DISClib.DataStructures import mapentry as me
 from DISClib.DataStructures import listiterator
 assert config
 
+
 """
 En este archivo definimos los TADs que vamos a usar,
 es decir contiene los modelos con los datos en memoria
