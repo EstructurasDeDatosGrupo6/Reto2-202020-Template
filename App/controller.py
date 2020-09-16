@@ -23,6 +23,8 @@
 import config as cf
 from App import model
 import csv
+from DISClib.ADT import map as mp
+from DISClib.DataStructures import mapentry as me
 
 
 """
@@ -54,36 +56,20 @@ def initCatalog():
 # ___________________________________________________
 
 
-def loadData(catalog, moviesfile, tagsfile, moviestagsfile):
-
-    loadMovies(catalog, moviesfile)
-    loadTags(catalog, tagsfile)
-    loadMoviesTags(catalog, moviestagsfile)
+def loadData(catalog, moviesfile,moviesCasting):
+    loadMovies(catalog,moviesfile,moviesCasting)
 
 
-def loadMovies(catalog, moviesfile):
+
+def loadMovies(catalog, moviesfile,moviesCasting):
     moviesfile= cf.data_dir + moviesfile
-    input_file= cvs.DictReader(open(moviesfile))
-    for movies in input_file:
-        model.addMovie(catalog, movie)
-        directors= movie["director"].split(",")
-        for director in directors:
-            model.addMovieDirector(catalog, director.strip(), movie)
-
-
-def loadTags(catalog, tagsfile):
-    tagsfile= cf.data_dir + tagsfile
-    input_file= cvs.DictReader(open(tagsfile))
-    for tag in input_file:
-        model.addTag(catalog, tag)
-
-
-def loadMoviesTags(catalog, moviestagsfile):
-    moviestagsfile= cf.data_dir + moviestagsfile
-    input_file = cvs.DictReader(open(moviestagsfile))
-    for tag in input_file:
-        model.addMovieTag(catalog, tag)
-
+    with open(moviesfile, newline='',encoding="utf-8-sig") as csvfile:
+        reader = csv.DictReader(csvfile,delimiter=';')
+        for movie in reader:
+            model.addMovie(catalog, movie)
+            #directors= movie["director"].split(",")
+            #for director in directors:
+                #model.addMovieDirector(catalog, director.strip(), movie)
 
         
 # ___________________________________________________
@@ -111,6 +97,9 @@ def getMoviesByTag(catalog, tagname):
 
 def getMoviesByYear(catalog, year):
     movies= model.getMoviesByYear(catalog, year)
+    return movies
+def getMoviesByProducer (producer,catalog):
+    movies = model.moviesFromproducer(producer,catalog)
     return movies
 
 

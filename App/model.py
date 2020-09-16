@@ -23,6 +23,7 @@ import config
 from DISClib.ADT import list as lt
 from DISClib.ADT import map as mp
 from DISClib.DataStructures import mapentry as me
+from DISClib.DataStructures import listiterator
 assert config
 
 """
@@ -39,6 +40,14 @@ tablas de simbolos.
 # -----------------------------------------------------
 # API del TAD Catalogo de Libros
 # -----------------------------------------------------
+
+def cmpProducers(key,element):
+    if (int(key) == int(me.getKey(element))):
+        return 0
+    elif (int(key) > int(me.getKey(element))):
+        return 1
+    else:
+        return -1
 
 
 def newCatalog():
@@ -59,7 +68,8 @@ def newCatalog():
                'directors': None,
                'tags': None,
                'tagIds': None,
-               'years': None}
+               'years': None,
+               'producerMovies': None}
 
     catalog['movies'] = lt.newList('SINGLE_LINKED', compareMoviesIds)
     catalog['moviesIds'] = mp.newMap(200,
@@ -82,6 +92,7 @@ def newCatalog():
                                  maptype='CHAINING',
                                  loadfactor=0.7,
                                  comparefunction=compareMapYear)
+    catalog['producerMovies'] = mp.newMap(10000,maptype='CHAINING',loadfactor=0.4,comparefunction=cmpProducers)
 
     return catalog
 
@@ -125,8 +136,8 @@ def addMovie(catalog, movie):
     libro fue publicaco en ese año.
     """
     lt.addLast(catalog['movies'], movie)
-    mp.put(catalog['moviesIds'], movie['id'], movie)
-    addMovieYear(catalog, movie)
+    #mp.put(catalog['moviesIds'], movie['id'], movie)
+    #addMovieYear(catalog, movie)
 
 
 def addMovieYear(catalog, movie):
@@ -217,14 +228,19 @@ def addMovieTag(catalog, tag):
 # Funciones de consulta
 # ==============================
 
-def moviesFromproducer (productora, lstMovies):
-
-    producer = mp.get(lstMovies['production_companies'],productora)
-    catalog = {productora: None}
-    catalog[productora] = mp.newMap(50000,109345121,'CHAINING',0.4,None)
-    if producer:
-        mp.put(catalog[productora],producer)
-    return catalog
+def moviesFromproducer (productora, CatalogMovies):
+    lst_productora = lt.newList(datastructure='SINGLE_LINKED',cmpfunction=None)
+    iter = listiterator.newIterator(CatalogMovies["movies"])
+    while listiterator.hasNext(iter):
+        movie = listiterator.next(iter)
+        if movie["production_companies"] == productora:
+            lt.addLast(lst_productora,movie)
+    return lst_productora
+    #catalog = {productora: None}
+    #catalog[productora] = mp.newMap(50000,109345121,'CHAINING',0.4,None)
+    #if producer:
+        #mp.put(catalog[productora],producer)
+    #return catalog
 
         
         

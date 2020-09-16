@@ -25,7 +25,10 @@ import config
 from DISClib.ADT import list as lt
 from DISClib.DataStructures import listiterator as it
 from App import controller
+from DISClib.DataStructures import listiterator
 assert config
+from DISClib.ADT import map as mp
+from DISClib.DataStructures import mapentry as me
 
 """
 La vista se encarga de la interacción con el usuario.
@@ -37,8 +40,8 @@ operación seleccionada.
 # ___________________________________________________
 #  Ruta a los archivos
 # ___________________________________________________
-movies = 'Data\MoviesCastingRaw-small.csv'
-moviesCasting = 'Data\MoviesCastingRaw-small.csv'
+movies = 'SmallMoviesDetailsCleaned.csv'
+moviesCasting = 'MoviesCastingRaw-small.csv'
 
 
 # ___________________________________________________
@@ -57,7 +60,7 @@ def printMenu():
     print("Bienvenido")
     print("1- Cargar peliculas")
     print("2- Descubrir productoras de cine")
-    print("3- Conocer a un director")
+    print("3- Requerimiento 1 ")
     print("4- Conocer a un actor")
     print("5- Entender un género cinmatográfico")
     print("6- Encontrar películas por país")
@@ -78,17 +81,32 @@ while True:
 
     elif int(inputs[0]) == 2:
         print("Cargando información de los archivos ....")
-        controller.loadData(cont, moviesfile, tagsfile, moviestagsfile)
-        print('Peliculas cargadas: ' + str(controller.moviesSize(cont)))
-        print('Autores cargados: ' + str(controller.authorsSize(cont)))
-        print('Géneros cargados: ' + str(controller.tagsSize(cont)))
+        controller.loadData(cont,movies,moviesCasting)
+        #print('Peliculas cargadas: ' + str(controller.moviesSize(cont)))
+        #print('Autores cargados: ' + str(controller.authorsSize(cont)))
+        #print('Géneros cargados: ' + str(controller.tagsSize(cont)))
         
 
     elif int(inputs[0]) == 3:
+        print("Cargando datos...")
+        productora = str(input("Ingrese la productora: "))
+        producer = cont['producerMovies']
+        mp.put(producer,productora,cont)
+        retorno = controller.getMoviesByProducer(productora,cont)
+        promedio = 0
+        suma = 0
+        iter = listiterator.newIterator(retorno)
+        while listiterator.hasNext(iter):
+            movie = listiterator.next(iter)
+            print(movie["title"])
+            suma += float(movie["vote_average"])
+        promedio = suma/lt.size(retorno)
+        print("Cantidad : ",lt.size(retorno))
+        print("Promedio: ",str(promedio))
         
-    elif int(inputs[0]) == 4:
+    #elif int(inputs[0]) == 4:
         
-    elif int(inputs[0]) == 5:
+    #elif int(inputs[0]) == 5:
         
     else:
         sys.exit(0)
