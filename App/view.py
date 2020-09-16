@@ -29,10 +29,6 @@ from DISClib.DataStructures import listiterator
 assert config
 from DISClib.ADT import map as mp
 from DISClib.DataStructures import mapentry as me
-from time import process_time 
-
-
-
 
 """
 La vista se encarga de la interacción con el usuario.
@@ -92,14 +88,10 @@ while True:
         
 
     elif int(inputs[0]) == 3:
-        t1_start = process_time()
-
         print("Cargando datos...")
         productora = str(input("Ingrese la productora: "))
         producer = cont['producerMovies']
         mp.put(producer,productora,cont)
-        t1_stop = process_time() #tiempo final
-        print("Tiempo de ejecución ",t1_stop-t1_start," segundos") 
         retorno = controller.getMoviesByProducer(productora,cont)
         promedio = 0
         suma = 0
@@ -111,6 +103,7 @@ while True:
         promedio = suma/lt.size(retorno)
         print("Cantidad : ",lt.size(retorno))
         print("Promedio: ",str(promedio))
+        #print("porquenofunciona")
         
     #elif int(inputs[0]) == 4:
         
