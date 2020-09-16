@@ -25,7 +25,7 @@ from DISClib.ADT import map as mp
 from DISClib.DataStructures import mapentry as me
 from DISClib.DataStructures import listiterator
 assert config
-
+from time import process_time 
 
 """
 En este archivo definimos los TADs que vamos a usar,
@@ -52,6 +52,7 @@ def cmpProducers(key,element):
 
 
 def newCatalog():
+    t1_start = process_time()
     """ Inicializa el catálogo de libros
 
     Crea una lista vacia para guardar todos los libros
@@ -93,7 +94,11 @@ def newCatalog():
                                  maptype='CHAINING',
                                  loadfactor=0.7,
                                  comparefunction=compareMapYear)
-    catalog['producerMovies'] = mp.newMap(10000,maptype='CHAINING',loadfactor=0.4,comparefunction=cmpProducers)
+    
+    
+    catalog['producerMovies'] = mp.newMap(10000,maptype='PROBING',loadfactor=0.5,comparefunction=cmpProducers)
+    t1_stop = process_time() #tiempo final
+    print("Tiempo de ejecución ",t1_stop-t1_start," segundos") 
 
     return catalog
 
@@ -230,12 +235,14 @@ def addMovieTag(catalog, tag):
 # ==============================
 
 def moviesFromproducer (productora, CatalogMovies):
+    
     lst_productora = lt.newList(datastructure='SINGLE_LINKED',cmpfunction=None)
     iter = listiterator.newIterator(CatalogMovies["movies"])
     while listiterator.hasNext(iter):
         movie = listiterator.next(iter)
         if movie["production_companies"] == productora:
             lt.addLast(lst_productora,movie)
+    
     return lst_productora
     #catalog = {productora: None}
     #catalog[productora] = mp.newMap(50000,109345121,'CHAINING',0.4,None)
