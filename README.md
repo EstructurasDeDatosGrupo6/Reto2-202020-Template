@@ -1,5 +1,9 @@
 #ISIS1225 - Estructura de un proyecto
 
+Marianna Velasco Zambrano. 201921703. m.velasco@uniandes.edu.co
+Adriana Katerine Rojas Noriega 202013428. A.rojasn@uniandes.edu.co
+Santiago Amaya Sicua 202011323. s.amayas@uniandes.edu.co
+
 Este proyecto busca mostrar una posible forma de organizar el código que se va a desarrollar en los proyectos del curso.
 
 Esta organización es una sugerencia que puede ser adaptada a  las necesidades y gustos de cada persona.
