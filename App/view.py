@@ -64,9 +64,9 @@ moviesCasting = 'MoviesCastingRaw-small.csv'
 # ___________________________________________________
 
 def printMenu():
-    print("Bienvenido")
-    print("1- Cargar peliculas")
-    print("2- Descubrir productoras de cine")
+    print("Bienvenido, por favot ejecute las primeras dos opciones antes de continuar")
+    print("1- Inicializar catalogo")
+    print("2- Cargar lista de peliculas ")
     print("3- Requerimiento 1 ")
     print("4- Conocer a un actor")
     print("5- Entender un género cinmatográfico")
