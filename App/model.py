@@ -94,11 +94,9 @@ def newCatalog():
                                  maptype='CHAINING',
                                  loadfactor=0.7,
                                  comparefunction=compareMapYear)
-    
-    
     catalog['producerMovies'] = mp.newMap(10000,maptype='PROBING',loadfactor=0.5,comparefunction=cmpProducers)
-    t1_stop = process_time() #tiempo final
-    print("Tiempo de ejecución ",t1_stop-t1_start," segundos") 
+    #t1_stop = process_time() #tiempo final
+    #print("Tiempo de ejecución ",t1_stop-t1_start," segundos") 
 
     return catalog
 
@@ -244,11 +242,24 @@ def moviesFromproducer (productora, CatalogMovies):
             lt.addLast(lst_productora,movie)
     
     return lst_productora
-    #catalog = {productora: None}
-    #catalog[productora] = mp.newMap(50000,109345121,'CHAINING',0.4,None)
-    #if producer:
-        #mp.put(catalog[productora],producer)
-    #return catalog
+
+def moviesFromdirector(director, CatalogMovies):
+    lst_director = lt.newList(datastructure='SINGLE_LINKED',cmpfunction=None)
+    iter = listiterator.newIterator(CatalogMovies["movies"])
+    while listiterator.hasNext(iter):
+        movie = listiterator.next(iter)
+        if movie["director_name"] == director:
+            lt.addLast(lst_director,movie)
+    return lst_director
+
+def moviesByActor(actor, CatalogMovies):
+    lst_actor = lt.newList(datastructure='SINGLE_LINKED',cmpfunction=None)
+    iter = listiterator.newIterator(CatalogMovies["movies"]
+    while listiterator.hasNext(iter)):
+        movie = listiterator.next(iter)
+        if movie ["actor1_name"] or movie ["actor2_name"] or movie ["actor3_name"] or movie ["actor4_name"] or movie ["actor5_name"] == actor:
+            lt.addLast(lst_director,movie)
+    return lst_actor
 
         
         
