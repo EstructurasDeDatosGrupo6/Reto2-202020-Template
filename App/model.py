@@ -254,8 +254,8 @@ def moviesFromdirector(director, CatalogMovies):
 
 def moviesByActor(actor, CatalogMovies):
     lst_actor = lt.newList(datastructure='SINGLE_LINKED',cmpfunction=None)
-    iter = listiterator.newIterator(CatalogMovies["movies"]
-    while listiterator.hasNext(iter)):
+    iter = listiterator.newIterator(CatalogMovies["movies"])
+    while listiterator.hasNext(iter):
         movie = listiterator.next(iter)
         if movie ["actor1_name"] or movie ["actor2_name"] or movie ["actor3_name"] or movie ["actor4_name"] or movie ["actor5_name"] == actor:
             lt.addLast(lst_director,movie)
