@@ -29,13 +29,10 @@ from DISClib.DataStructures import listiterator
 assert config
 from DISClib.ADT import map as mp
 from DISClib.DataStructures import mapentry as me
-<<<<<<< HEAD
 
 
 
 
-=======
->>>>>>> 36aa8ee92875c48872ac32a3512f3f3b990ab57d
 
 """
 La vista se encarga de la interacción con el usuario.
@@ -118,7 +115,23 @@ while True:
         
     #elif int(inputs[0]) == 4:
         
-    #elif int(inputs[0]) == 5:
+    elif int(inputs[0]) == 5:
+        
+        genero=str(input("Ingrese el género a conocer: "))
+        print("GENERO"+"\t"+"\t"+ "PELÍCULA" +"\t"+"\t"+ "\t"+ "VOTE_COUNT"+"\n"+\
+            "------------------------------------------------------------")
+        retorno=controller.getMoviesByGenre(genero, cont)
+        promedio=0
+        suma=0
+        iter= listiterator.newIterator(retorno)
+        while listiterator.hasNext(iter):
+            movie=listiterator.next(iter)
+            suma+=int(movie["vote_count"])
+            print(movie["genres"]+"\t"+"\t"+ movie["title"]+"\t"+"\t"+ "\t"+(movie["vote_average"]))
+        promedio=suma/lt.size(retorno)
+        
+        print("TOTAL PELICULAS: "+ str(lt.size(retorno)))
+        print("PROMEDIO DE VOTOS: "+ str(promedio)+"\n")
         
     else:
         sys.exit(0)

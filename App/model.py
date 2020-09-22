@@ -250,6 +250,16 @@ def moviesFromproducer (productora, CatalogMovies):
         #mp.put(catalog[productora],producer)
     #return catalog
 
+def moviesGenre(genero, CatalogMovies):
+    lst_genero= lt.newList(datastructure="SINGLE_LINKED", cmpfunction=None)
+    iter=listiterator.newIterator(CatalogMovies["movies"])
+    while listiterator.hasNext(iter):
+        movie = listiterator.next(iter)
+        if movie["genres"] == genero:
+            lt.addLast(lst_genero,movie)
+    
+    return lst_genero
+
         
         
 

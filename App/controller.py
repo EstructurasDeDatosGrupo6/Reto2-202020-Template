@@ -98,8 +98,13 @@ def getMoviesByTag(catalog, tagname):
 def getMoviesByYear(catalog, year):
     movies= model.getMoviesByYear(catalog, year)
     return movies
+
 def getMoviesByProducer (producer,catalog):
     movies = model.moviesFromproducer(producer,catalog)
+    return movies
+
+def getMoviesByGenre (genre, catalog):
+    movies=model.moviesGenre(genre, catalog)
     return movies
 
 
