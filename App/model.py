@@ -258,7 +258,7 @@ def moviesByActor(actor, CatalogMovies):
     while listiterator.hasNext(iter):
         movie = listiterator.next(iter)
         if movie ["actor1_name"] or movie ["actor2_name"] or movie ["actor3_name"] or movie ["actor4_name"] or movie ["actor5_name"] == actor:
-            lt.addLast(lst_director,movie)
+            lt.addLast(lst_actor,movie)
     return lst_actor
 
         
