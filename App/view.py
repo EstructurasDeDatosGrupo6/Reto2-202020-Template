@@ -96,9 +96,6 @@ while True:
 
         print("Cargando datos...")
         productora = str(input("Ingrese la productora: "))
-        producer = cont['producerMovies']
-        mp.put(producer,productora,cont)
-        
         retorno = controller.getMoviesByProducer(productora,cont)
         promedio = 0
         suma = 0
@@ -110,7 +107,6 @@ while True:
         promedio = suma/lt.size(retorno)
         print("Cantidad : ",lt.size(retorno))
         print("Promedio: ",str(promedio))
-        #print("porquenofunciona")
         
         
     #elif int(inputs[0]) == 4:
