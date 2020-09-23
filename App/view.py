@@ -132,9 +132,7 @@ while True:
         print("PROMEDIO DE VOTOS: "+ str(promedio)+"\n")
     
     elif int(inputs[0]) == 6:
-        
         pais=str(input("Ingrese el país de interés: "))
-
         print("AÑO" +"\t"+ "\t"+"PELÍCULA"+"\t"+ "\t"+"DIRECTOR"+"\n"+\
             "------------------------------------------------------")
         retorno=controller.getMoviesByCountry(pais, cont)
@@ -143,7 +141,7 @@ while True:
             movie=listiterator.next(iter)
             anio=str(movie['release_date'])
             anio=anio[6:10]
-            print(anio+"\t"+"\t"+movie['title']+"\t"+"\t"+ "\t"+movie["director_name"]) 
+            print(anio+"\t"+"\t"+movie['title']+"\t"+"\t"+"\t"+movie["director_name"]) 
         
     else:
         sys.exit(0)
