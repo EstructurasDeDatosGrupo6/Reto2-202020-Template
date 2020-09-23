@@ -97,7 +97,7 @@ def newCatalog():
     catalog['producerMovies'] = mp.newMap(10000,maptype='PROBING',loadfactor=0.5,comparefunction=cmpProducers)
     #t1_stop = process_time() #tiempo final
     #print("Tiempo de ejecución ",t1_stop-t1_start," segundos") 
-
+   
     return catalog
 
 
@@ -261,7 +261,7 @@ def moviesByActor(actor, CatalogMovies):
             lt.addLast(lst_actor,movie)
     return lst_actor
 
-def moviesGenre(genero, CatalogMovies):
+def moviesByGenre(genero, CatalogMovies):
     lst_genero= lt.newList(datastructure="SINGLE_LINKED", cmpfunction=None)
     iter=listiterator.newIterator(CatalogMovies["movies"])
     while listiterator.hasNext(iter):
@@ -271,7 +271,16 @@ def moviesGenre(genero, CatalogMovies):
     
     return lst_genero
 
-        
+def moviesByCountry(pais, CatalogMovies):
+    lst_paises=  lt.newList(datastructure="SINGLE_LINKED", cmpfunction=None)
+    iter=listiterator.newIterator(CatalogMovies['movies'])
+    while listiterator.hasNext(iter):
+        movie = listiterator.next(iter)
+        if movie["production_countries"] == pais:
+            lt.addLast(lst_paises,movie)
+            
+    
+    return lst_paises
         
 
 

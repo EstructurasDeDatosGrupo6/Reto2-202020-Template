@@ -63,13 +63,17 @@ def loadData(catalog, moviesfile,moviesCasting):
 
 def loadMovies(catalog, moviesfile,moviesCasting):
     moviesfile= cf.data_dir + moviesfile
+    moviescast= cf.data_dir+ moviesCasting
     with open(moviesfile, newline='',encoding="utf-8-sig") as csvfile:
         reader = csv.DictReader(csvfile,delimiter=';')
         for movie in reader:
             model.addMovie(catalog, movie)
-            #directors= movie["director"].split(",")
-            #for director in directors:
-                #model.addMovieDirector(catalog, director.strip(), movie)
+        
+        
+
+            # directors= movie["director"].split(",")
+            # for director in directors:
+            #     model.addMovieDirector(catalog, director.strip(), movie)
 
         
 # ___________________________________________________
@@ -104,10 +108,12 @@ def getMoviesByProducer (producer,catalog):
     return movies
 
 def getMoviesByGenre (genre, catalog):
-    movies=model.moviesGenre(genre, catalog)
+    movies=model.moviesByGenre(genre, catalog)
     return movies
 
-
+def getMoviesByCountry(country, catalog):
+    movies=model.moviesByCountry(country, catalog)
+    return movies
 
 
 

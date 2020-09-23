@@ -64,7 +64,7 @@ def printMenu():
     print("Bienvenido, por favot ejecute las primeras dos opciones antes de continuar")
     print("1- Inicializar catalogo")
     print("2- Cargar lista de peliculas ")
-    print("3- Requerimiento 1 ")
+    print("3- Conocer productoras ")
     print("4- Conocer a un actor")
     print("5- Entender un género cinmatográfico")
     print("6- Encontrar películas por país")
@@ -92,8 +92,6 @@ while True:
         
 
     elif int(inputs[0]) == 3:
-        
-
         print("Cargando datos...")
         productora = str(input("Ingrese la productora: "))
         retorno = controller.getMoviesByProducer(productora,cont)
@@ -109,7 +107,8 @@ while True:
         print("Promedio: ",str(promedio))
         
         
-    #elif int(inputs[0]) == 4:
+    # elif int(inputs[0]) == 4:
+        
         
     elif int(inputs[0]) == 5:
         
@@ -128,6 +127,25 @@ while True:
         
         print("TOTAL PELICULAS: "+ str(lt.size(retorno)))
         print("PROMEDIO DE VOTOS: "+ str(promedio)+"\n")
+    
+    elif int(inputs[0]) == 6:
+        
+        pais=str(input("Ingrese el país de interés: "))
+
+        print("AÑO" +"\t"+ "\t"+"PELÍCULA"+"\t"+ "\t"+"DIRECTOR"+"\n"+\
+            "------------------------------------------------------")
+        retorno=controller.getMoviesByCountry(pais, cont)
+        
+        iter= listiterator.newIterator(retorno)
+        while listiterator.hasNext(iter):
+            movie=listiterator.next(iter)
+            anio=str(movie['release_date'])
+            anio=anio[6:10]
+            print(movie)
+            print(anio+"\t"+"\t"+movie['title']+"\t"+"\t"+ "\t")
+            
+       
+
         
     else:
         sys.exit(0)
