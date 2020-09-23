@@ -49,8 +49,7 @@ def cmpProducers(key,element):
         return 1
     else:
         return -1
-
-
+    
 def newCatalog():
     t1_start = process_time()
     """ Inicializa el catálogo de libros
@@ -66,6 +65,7 @@ def newCatalog():
     Retorna el catalogo inicializado.
     """
     catalog = {'movies': None,
+                'moviesCast': None
                'moviesIds': None,
                'directors': None,
                'tags': None,
@@ -74,6 +74,7 @@ def newCatalog():
                'producerMovies': None}
 
     catalog['movies'] = lt.newList('SINGLE_LINKED', compareMoviesIds)
+    catalog['moviesCast'] = lt.newList('SINGLE_LINKED', compareMoviesIds)
     catalog['moviesIds'] = mp.newMap(200,
                                    maptype='PROBING',
                                    loadfactor=0.4,

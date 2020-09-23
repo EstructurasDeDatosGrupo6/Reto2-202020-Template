@@ -70,9 +70,6 @@ def loadMovies(catalog, moviesfile,moviesCasting):
         reader = csv.DictReader(csvfile,delimiter=';')
         for movie in reader:
             model.addMovie(catalog, movie)
-            # directors= movie["director"].split(";")
-            # for director in directors:
-            #     model.addMovieDirector(catalog, director.strip(), movie)
 
 def loadCasting(catalog, moviesCasting):
     moviescast= cf.data_dir+ moviesCasting

@@ -27,7 +27,6 @@ sys.setrecursionlimit(1500)
 
 import config
 from DISClib.ADT import list as lt
-from DISClib.DataStructures import listiterator as it
 from App import controller
 from DISClib.DataStructures import listiterator
 assert config
