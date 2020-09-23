@@ -74,7 +74,7 @@ def newCatalog():
                'producerMovies': None}
 
     catalog['movies'] = lt.newList('SINGLE_LINKED', compareMoviesIds)
-    catalog['moviesCast'] = lt.newList('SINGLE_LINKED', compareMoviesIds)
+    #catalog['moviesCast'] = lt.newList('SINGLE_LINKED', compareMoviesIds)
     catalog['moviesIds'] = mp.newMap(200,
                                    maptype='PROBING',
                                    loadfactor=0.4,
@@ -96,8 +96,6 @@ def newCatalog():
                                  loadfactor=0.7,
                                  comparefunction=compareMapYear)
     catalog['producerMovies'] = mp.newMap(10000,maptype='PROBING',loadfactor=0.5,comparefunction=cmpProducers)
-    catalog['casting']=lt.newList('SINGLE_LINKED', None)
-    catalog['listaFinal']=lt.newList('SINGLE_LINKED', None)
     #t1_stop = process_time() #tiempo final
     #print("Tiempo de ejecución ",t1_stop-t1_start," segundos") 
    
@@ -185,28 +183,23 @@ def addMovieDirector(catalog, directorname, movie):
     por un autor.
     Cuando se adiciona el libro se actualiza el promedio de dicho autor
     """
-    # directors = catalog['directors']
-    # existdirector = mp.contains(directors, directorname)
-    # if existdirector:
-    #     entry = mp.get(directors, directorname)
-    #     director = me.getValue(entry)
-    # else:
-    #     director = newDirector(directorname)
-    #     mp.put(directors, directorname, director)
-    # lt.addLast(director['movies'], movie)
+    directors = catalog['directors']
+    existdirector = mp.contains(directors, directorname)
+    if existdirector:
+        entry = mp.get(directors, directorname)
+        director = me.getValue(entry)
+    else:
+        director = newDirector(directorname)
+        mp.put(directors, directorname, director)
+    lt.addLast(director['movies'], movie)
 
-    # directavg = directors['vote_average']
-    # movieavg = movie['vote_average']
-    # if (directhavg == 0.0):
-    #     directors['vote_average'] = float(movieavg)
-    # else:
-    #     directors['vote_average'] = (directavg + float(movieavg)) / 2
+    directavg = director['vote_average']
+    movieavg = movie['vote_average']
+    if (directhavg == 0.0):
+        director['vote_average'] = float(movieavg)
+    else:
+        director['vote_average'] = (directavg + float(movieavg)) / 2
 
-def addCasting(catalog, movie):
-    lt.addLast(catalog['casting'], movie)
-
-def addInfo(catalog, movie):
-    lt.addLast(catalog['listaFinal'], movie)
 
 def addTag(catalog, tag):
     """
@@ -271,7 +264,7 @@ def moviesByActor(actor, CatalogMovies):
 
 def moviesByGenre(genero, CatalogMovies):
     lst_genero= lt.newList(datastructure="SINGLE_LINKED", cmpfunction=None)
-    iter=listiterator.newIterator(CatalogMovies["listaFinal"])
+    iter=listiterator.newIterator(CatalogMovies["movies"])
     while listiterator.hasNext(iter):
         movie = listiterator.next(iter)
         if movie["genres"] == genero:
@@ -281,7 +274,7 @@ def moviesByGenre(genero, CatalogMovies):
 
 def moviesByCountry(pais, CatalogMovies):
     lst_paises=  lt.newList(datastructure="SINGLE_LINKED", cmpfunction=None)
-    iter=listiterator.newIterator(CatalogMovies['listaFinal'])
+    iter=listiterator.newIterator(CatalogMovies['movies'])
     while listiterator.hasNext(iter):
         movie = listiterator.next(iter)
         if movie["production_countries"] == pais:
