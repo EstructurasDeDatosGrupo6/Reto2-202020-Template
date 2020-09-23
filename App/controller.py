@@ -65,7 +65,6 @@ def loadData(catalog, moviesfile,moviesCasting):
 
 def loadMovies(catalog, moviesfile,moviesCasting):
     moviesfile= cf.data_dir + moviesfile
-    moviescast= cf.data_dir+ moviesCasting
     with open(moviesfile, newline='',encoding="utf-8-sig") as csvfile:
         reader = csv.DictReader(csvfile,delimiter=';')
         for movie in reader:

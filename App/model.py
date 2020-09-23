@@ -195,7 +195,7 @@ def addMovieDirector(catalog, directorname, movie):
 
     directavg = director['vote_average']
     movieavg = movie['vote_average']
-    if (directhavg == 0.0):
+    if (directavg == 0.0):
         director['vote_average'] = float(movieavg)
     else:
         director['vote_average'] = (directavg + float(movieavg)) / 2
