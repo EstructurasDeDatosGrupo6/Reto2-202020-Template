@@ -65,7 +65,7 @@ def newCatalog():
     Retorna el catalogo inicializado.
     """
     catalog = {'movies': None,
-                'moviesCast': None
+                'moviesCast': None,
                'moviesIds': None,
                'directors': None,
                'tags': None,
