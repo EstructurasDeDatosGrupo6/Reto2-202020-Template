@@ -64,13 +64,14 @@ moviesCasting = 'MoviesCastingRaw-small.csv'
 # ___________________________________________________
 
 def printMenu():
-    print("Bienvenido, por favot ejecute las primeras dos opciones antes de continuar")
+    print("Bienvenido"+"\n"+ "POR FAVOR EJECUTE LA OPCIÓN 1 Y 2 ANTES DE CONTINUAR")
     print("1- Inicializar catalogo")
     print("2- Cargar lista de peliculas ")
     print("3- Conocer productoras ")
-    print("4- Conocer a un actor")
-    print("5- Entender un género cinmatográfico")
-    print("6- Encontrar películas por país")
+    print("4- Conocer a un conocer a un director")
+    print("5- Conocer a un actor")
+    print("6- Entender un género cinmatográfico")
+    print("7- Encontrar películas por país")
 
 
 """
@@ -94,54 +95,68 @@ while True:
         #print('Géneros cargados: ' + str(controller.tagsSize(cont)))
         
 
-    elif int(inputs[0]) == 3:
-        print("Cargando datos...")
+    elif int(inputs[0]) == 3: #Conocer productoras de cine 
+        
+        
         productora = str(input("Ingrese la productora: "))
         retorno = controller.getMoviesByProducer(productora,cont)
         promedio = 0
         suma = 0
+        print("PELICULAS"+"\n"+\
+            "---------------------")
         iter = listiterator.newIterator(retorno)
         while listiterator.hasNext(iter):
             movie = listiterator.next(iter)
             print(movie["title"])
             suma += float(movie["vote_average"])
         promedio = suma/lt.size(retorno)
-        print("Cantidad : ",lt.size(retorno))
-        print("Promedio: ",str(promedio))
+        print("--------------------")
+        print("CANTIDAD : ",lt.size(retorno))
+        print("PROMEDIO: ",str(promedio))
         
         
-    # elif int(inputs[0]) == 4:
+    # elif int(inputs[0]) == 4: #Conocer a un director
+
+    # elif int(inputs[0])==5: #Conocer a un actor 
+
         
         
-    elif int(inputs[0]) == 5:
+    elif int(inputs[0]) == 6: #Entender un género cinematográfico
         
         genero=str(input("Ingrese el género a conocer: "))
-        print("GENERO"+"\t"+"\t"+ "PELÍCULA" +"\t"+"\t"+ "\t"+ "VOTE_COUNT"+"\n"+\
-            "------------------------------------------------------------")
+        
+            
+        print("{:<4}\t{:<20.20}\t{:20.20}".format("GENERO", "PELICULA", "VOTE_COUNT"))
+        print("------------------------------------------------")
         retorno=controller.getMoviesByGenre(genero, cont)
         promedio=0
         suma=0
+        
         iter= listiterator.newIterator(retorno)
+        
         while listiterator.hasNext(iter):
             movie=listiterator.next(iter)
             suma+=int(movie["vote_count"])
-            print(movie["genres"]+"\t"+"\t"+ movie["title"]+"\t"+"\t"+ "\t"+(movie["vote_average"]))
+            # print(movie["genres"]+"\t"+"\t"+ movie["title"]+"\t"+"\t"+ "\t"+(movie["vote_average"]))
+            print("{:<4}\t{:<20.20}\t{:20.20}".format(movie["genres"], movie['title'], (movie["vote_average"])))
         promedio=suma/lt.size(retorno)
         
         print("TOTAL PELICULAS: "+ str(lt.size(retorno)))
         print("PROMEDIO DE VOTOS: "+ str(promedio)+"\n")
     
-    elif int(inputs[0]) == 6:
+    elif int(inputs[0]) == 7: #Encontrar películas por país
+
         pais=str(input("Ingrese el país de interés: "))
-        print("AÑO" +"\t"+ "\t"+"PELÍCULA"+"\t"+ "\t"+"DIRECTOR"+"\n"+\
-            "------------------------------------------------------")
+        print("{:<4}\t{:<20.20}\t{:20.20}".format("AÑO", "PELICULA", "DIRECTOR"))
+        print("------------------------------------------------------")
         retorno=controller.getMoviesByCountry(pais, cont)
         iter= listiterator.newIterator(retorno)
         while listiterator.hasNext(iter):
             movie=listiterator.next(iter)
             anio=str(movie['release_date'])
             anio=anio[6:10]
-            print(anio+"\t"+"\t"+movie['title']+"\t"+"\t"+"\t"+movie["director_name"]) 
+            print("{:<4}\t{:<20.20}\t{:20.20}".format(anio, movie['title'], movie["director_name"]))
+           
         
     else:
         sys.exit(0)
