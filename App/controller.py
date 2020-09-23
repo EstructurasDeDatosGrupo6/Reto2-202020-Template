@@ -25,7 +25,8 @@ from App import model
 import csv
 from DISClib.ADT import map as mp
 from DISClib.DataStructures import mapentry as me
-
+from DISClib.ADT import list as lt
+from DISClib.DataStructures import listiterator as it
 
 """
 El controlador se encarga de mediar entre la vista y el modelo.
@@ -57,9 +58,10 @@ def initCatalog ():
 
 
 def loadData(catalog, moviesfile,moviesCasting):
-    loadMovies(catalog,moviesfile,moviesCasting)
-
-
+    loadMovies(catalog,moviesfile, moviesCasting)
+    loadCasting(catalog, moviesCasting)
+    unirListas(catalog, catalog['movies'], catalog['casting'])
+    
 
 def loadMovies(catalog, moviesfile,moviesCasting):
     moviesfile= cf.data_dir + moviesfile
@@ -68,14 +70,34 @@ def loadMovies(catalog, moviesfile,moviesCasting):
         reader = csv.DictReader(csvfile,delimiter=';')
         for movie in reader:
             model.addMovie(catalog, movie)
-        
-        
-
-            # directors= movie["director"].split(",")
+            # directors= movie["director"].split(";")
             # for director in directors:
             #     model.addMovieDirector(catalog, director.strip(), movie)
 
-        
+def loadCasting(catalog, moviesCasting):
+    moviescast= cf.data_dir+ moviesCasting
+    with open(moviescast, newline='',encoding="utf-8-sig") as csvfile:
+        reader = csv.DictReader(csvfile,delimiter=';')
+        for movie in reader:
+            model.addCasting(catalog, movie)
+
+def unirListas(catalog, lista1, lista2):
+    
+    iter1=it.newIterator(lista1)
+    
+    while it.hasNext(iter1):
+        movie=it.next(iter1)
+        iter2=it.newIterator(lista2)
+        while it.hasNext(iter2):
+            cast=it.next(iter2)
+            if movie['id']==cast['id']:
+                moviesInfo=model.addInfo(catalog, {**movie, **cast})
+                
+
+    return moviesInfo
+
+
+
 # ___________________________________________________
 #  Funciones para consultas
 # ___________________________________________________

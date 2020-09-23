@@ -20,7 +20,11 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  """
 
+
+
 import sys
+sys.setrecursionlimit(1500)
+
 import config
 from DISClib.ADT import list as lt
 from DISClib.DataStructures import listiterator as it
@@ -135,17 +139,12 @@ while True:
         print("AÑO" +"\t"+ "\t"+"PELÍCULA"+"\t"+ "\t"+"DIRECTOR"+"\n"+\
             "------------------------------------------------------")
         retorno=controller.getMoviesByCountry(pais, cont)
-        
         iter= listiterator.newIterator(retorno)
         while listiterator.hasNext(iter):
             movie=listiterator.next(iter)
             anio=str(movie['release_date'])
             anio=anio[6:10]
-            print(movie)
-            print(anio+"\t"+"\t"+movie['title']+"\t"+"\t"+ "\t")
-            
-       
-
+            print(anio+"\t"+"\t"+movie['title']+"\t"+"\t"+ "\t"+movie["director_name"]) 
         
     else:
         sys.exit(0)
