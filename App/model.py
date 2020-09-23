@@ -96,6 +96,8 @@ def newCatalog():
                                  loadfactor=0.7,
                                  comparefunction=compareMapYear)
     catalog['producerMovies'] = mp.newMap(10000,maptype='PROBING',loadfactor=0.5,comparefunction=cmpProducers)
+    catalog['casting']=lt.newList('SINGLE_LINKED', None)
+    catalog['listaFinal']=lt.newList('SINGLE_LINKED', None)
     #t1_stop = process_time() #tiempo final
     #print("Tiempo de ejecución ",t1_stop-t1_start," segundos") 
    
@@ -200,6 +202,11 @@ def addMovieDirector(catalog, directorname, movie):
     else:
         director['vote_average'] = (directavg + float(movieavg)) / 2
 
+def addCasting(catalog, movie):
+    lt.addLast(catalog['casting'], movie)
+
+def addInfo(catalog, movie):
+    lt.addLast(catalog['listaFinal'], movie)
 
 def addTag(catalog, tag):
     """
@@ -264,7 +271,7 @@ def moviesByActor(actor, CatalogMovies):
 
 def moviesByGenre(genero, CatalogMovies):
     lst_genero= lt.newList(datastructure="SINGLE_LINKED", cmpfunction=None)
-    iter=listiterator.newIterator(CatalogMovies["movies"])
+    iter=listiterator.newIterator(CatalogMovies["listaFinal"])
     while listiterator.hasNext(iter):
         movie = listiterator.next(iter)
         if movie["genres"] == genero:
@@ -274,7 +281,7 @@ def moviesByGenre(genero, CatalogMovies):
 
 def moviesByCountry(pais, CatalogMovies):
     lst_paises=  lt.newList(datastructure="SINGLE_LINKED", cmpfunction=None)
-    iter=listiterator.newIterator(CatalogMovies['movies'])
+    iter=listiterator.newIterator(CatalogMovies['listaFinal'])
     while listiterator.hasNext(iter):
         movie = listiterator.next(iter)
         if movie["production_countries"] == pais:
