@@ -68,6 +68,10 @@ def loadMovies(catalog, moviesfile,moviesCasting):
         reader = csv.DictReader(csvfile,delimiter=';')
         for movie in reader:
             model.addMovie(catalog, movie)
+    with open open(moviescast, newline='',encoding="utf-8-sig") as csvfile:
+        reader = csv.DictReader(csvfile,delimiter=';')
+        for movie in reader:
+            model.addMovie(catalog, movie)
         
         
 
