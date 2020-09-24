@@ -126,7 +126,7 @@ while True:
         genero=str(input("Ingrese el género a conocer: "))
         
             
-        print("{:<4}\t{:<20.20}\t{:20.20}".format("GENERO", "PELICULA", "VOTE_COUNT"))
+        print("{:<4}\t{:<20.20}\t{:20.20}".format("GENERO", "       PELICULA", "  VOTE_COUNT"))
         print("------------------------------------------------")
         retorno=controller.getMoviesByGenre(genero, cont)
         promedio=0
@@ -138,7 +138,7 @@ while True:
             movie=listiterator.next(iter)
             suma+=int(movie["vote_count"])
             # print(movie["genres"]+"\t"+"\t"+ movie["title"]+"\t"+"\t"+ "\t"+(movie["vote_average"]))
-            print("{:<4}\t{:<20.20}\t{:20.20}".format(movie["genres"], movie['title'], (movie["vote_average"])))
+            print("{:<4}\t{:<20.20}\t{:20.20}".format(movie["genres"], movie['title'], (movie["vote_count"])))
         promedio=suma/lt.size(retorno)
         
         print("TOTAL PELICULAS: "+ str(lt.size(retorno)))
