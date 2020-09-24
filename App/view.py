@@ -110,6 +110,36 @@ while True:
             print(movie["title"])
             suma += float(movie["vote_average"])
         promedio = suma/lt.size(retorno)
+<<<<<<< HEAD
+        print("Cantidad: ",lt.size(retorno))
+        print("Promedio: ",str(promedio))
+        
+        
+    elif int(inputs[0]) == 4:
+        director = str(input("Ingrese el director a conocer: "))
+        retorno = controller.getMoviesByDirector(director,cont)
+        promedio = 0
+        suma = 0
+        iter = listiterator.newIterator(retorno)
+        while listiterator.hasNext(iter):
+            movie = listiterator.next(iter)
+            print(movie["title"])
+            suma += float(movie["vote_average"])
+        promedio = suma/lt.size(retorno)
+        print("Cantidad: "+lt.size(retorno))
+        print("Promedio: "+str(promedio))
+
+    elif int(inputs[0]) == 5:
+        actor = str(input("Ingrese el actor a conocer: "))
+        retorno = controller.getMoviesByDirector(actor,cont)
+        promedio = 0
+        suma = 0
+        iter = listiterator.newIterator(retorno)
+        while listiterator.hasNext(iter):
+            movie = listiterator.next(iter)
+            print(movie["title"])
+            suma += float(movie["vote_average"])
+=======
         print("--------------------")
         print("CANTIDAD : ",lt.size(retorno))
         print("PROMEDIO: ",str(promedio))
@@ -119,9 +149,17 @@ while True:
 
     # elif int(inputs[0])==5: #Conocer a un actor 
 
+>>>>>>> fe2c06dd4ded0dab238aa67d3d49e1523d319124
         
+        promedio = suma/lt.size(retorno)
+        print("Cantidad: "+lt.size(retorno))
+        print("Promedio: "+str(promedio))
         
+<<<<<<< HEAD
+    elif int(inputs[0]) == 6:
+=======
     elif int(inputs[0]) == 6: #Entender un género cinematográfico
+>>>>>>> fe2c06dd4ded0dab238aa67d3d49e1523d319124
         
         genero=str(input("Ingrese el género a conocer: "))
         
@@ -144,8 +182,12 @@ while True:
         print("TOTAL PELICULAS: "+ str(lt.size(retorno)))
         print("PROMEDIO DE VOTOS: "+ str(promedio)+"\n")
     
+<<<<<<< HEAD
+    elif int(inputs[0]) == 7:
+=======
     elif int(inputs[0]) == 7: #Encontrar películas por país
 
+>>>>>>> fe2c06dd4ded0dab238aa67d3d49e1523d319124
         pais=str(input("Ingrese el país de interés: "))
         print("{:<4}\t{:<20.20}\t{:20.20}".format("AÑO", "PELICULA", "DIRECTOR"))
         print("------------------------------------------------------")

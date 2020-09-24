@@ -124,6 +124,12 @@ def getMoviesByYear(catalog, year):
 def getMoviesByProducer (producer,catalog):
     movies = model.moviesFromproducer(producer,catalog)
     return movies
+def getMoviesByDirector(director,catalog):
+    movies = model.moviesFromdirector(producer,catalog)
+    return movies 
+def getMoviesByActor(actor,catalog):
+    movies = model.moviesFromActor
+    return movies 
 
 def getMoviesByGenre (genre, catalog):
     movies=model.moviesByGenre(genre, catalog)
