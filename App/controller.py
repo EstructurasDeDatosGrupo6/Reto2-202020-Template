@@ -125,10 +125,10 @@ def getMoviesByProducer (producer,catalog):
     movies = model.moviesFromproducer(producer,catalog)
     return movies
 def getMoviesByDirector(director,catalog):
-    movies = model.moviesFromdirector(producer,catalog)
+    movies = model.moviesFromdirector(director,catalog)
     return movies 
 def getMoviesByActor(actor,catalog):
-    movies = model.moviesFromActor
+    movies = model.moviesFromActor(actor, catalog)
     return movies 
 
 def getMoviesByGenre (genre, catalog):
