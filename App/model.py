@@ -51,7 +51,7 @@ def cmpProducers(key,element):
         return -1
     
 def newCatalog():
-    t1_start = process_time()
+    #t1_start = process_time()
     """ Inicializa el catálogo de libros
 
     Crea una lista vacia para guardar todos los libros
@@ -65,8 +65,9 @@ def newCatalog():
     Retorna el catalogo inicializado.
     """
     catalog = {'movies': None,
-                'moviesCast': None,
+                'casting': None,
                'moviesIds': None,
+               'listaFinal':None,
                'directors': None,
                'tags': None,
                'tagIds': None,
@@ -165,7 +166,7 @@ def addMovieYear(catalog, movie):
     else:
         year = newYear(pubyear)
         mp.put(years, pubyear, year)
-    lt.addLast(year['movies'], movies)
+    lt.addLast(year['movies'], movie)
 
 
 def newYear(pubyear):
@@ -231,9 +232,9 @@ def addMovieTag(catalog, tag):
         tagmovie = mp.get(catalog['tags'], me.getValue(entry)['name'])
         tagmovie['value']['total_books'] += 1
         tagmovie['value']['count'] += int(tag['count'])
-        movie = mp.get(catalog['moviesIds'], bookid)
-        if book:
-            lt.addLast(tagbook['value']['movies'], book['value'])
+        movie = mp.get(catalog['moviesIds'], movieid)
+        if movie:
+            lt.addLast(tagmovie['value']['movies'], movie['value'])
 
 
 # ==============================
@@ -253,16 +254,16 @@ def moviesFromproducer (productora, CatalogMovies):
 
 def moviesFromdirector(director, CatalogMovies):
     lst_director = lt.newList(datastructure='SINGLE_LINKED',cmpfunction=None)
-    iter = listiterator.newIterator(CatalogMovies["movies"])
+    iter = listiterator.newIterator(CatalogMovies["listaFinal"])
     while listiterator.hasNext(iter):
         movie = listiterator.next(iter)
         if movie["director_name"] == director:
             lt.addLast(lst_director,movie)
     return lst_director
 
-def moviesByActor(actor, CatalogMovies):
+def moviesFromActor(actor, CatalogMovies):
     lst_actor = lt.newList(datastructure='SINGLE_LINKED',cmpfunction=None)
-    iter = listiterator.newIterator(CatalogMovies["movies"])
+    iter = listiterator.newIterator(CatalogMovies["listaFinal"])
     while listiterator.hasNext(iter):
         movie = listiterator.next(iter)
         if movie ["actor1_name"] or movie ["actor2_name"] or movie ["actor3_name"] or movie ["actor4_name"] or movie ["actor5_name"] == actor:

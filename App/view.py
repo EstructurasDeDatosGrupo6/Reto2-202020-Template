@@ -106,14 +106,40 @@ while True:
             print(movie["title"])
             suma += float(movie["vote_average"])
         promedio = suma/lt.size(retorno)
-        print("Cantidad : ",lt.size(retorno))
+        print("Cantidad: ",lt.size(retorno))
         print("Promedio: ",str(promedio))
         
         
-    # elif int(inputs[0]) == 4:
-        
-        
+    elif int(inputs[0]) == 4:
+        director = str(input("Ingrese el director a conocer: "))
+        retorno = controller.getMoviesByDirector(director,cont)
+        promedio = 0
+        suma = 0
+        iter = listiterator.newIterator(retorno)
+        while listiterator.hasNext(iter):
+            movie = listiterator.next(iter)
+            print(movie["title"])
+            suma += float(movie["vote_average"])
+        promedio = suma/lt.size(retorno)
+        print("Cantidad: "+lt.size(retorno))
+        print("Promedio: "+str(promedio))
+
     elif int(inputs[0]) == 5:
+        actor = str(input("Ingrese el actor a conocer: "))
+        retorno = controller.getMoviesByDirector(actor,cont)
+        promedio = 0
+        suma = 0
+        iter = listiterator.newIterator(retorno)
+        while listiterator.hasNext(iter):
+            movie = listiterator.next(iter)
+            print(movie["title"])
+            suma += float(movie["vote_average"])
+        
+        promedio = suma/lt.size(retorno)
+        print("Cantidad: "+lt.size(retorno))
+        print("Promedio: "+str(promedio))
+        
+    elif int(inputs[0]) == 6:
         
         genero=str(input("Ingrese el género a conocer: "))
         print("GENERO"+"\t"+"\t"+ "PELÍCULA" +"\t"+"\t"+ "\t"+ "VOTE_COUNT"+"\n"+\
@@ -131,7 +157,7 @@ while True:
         print("TOTAL PELICULAS: "+ str(lt.size(retorno)))
         print("PROMEDIO DE VOTOS: "+ str(promedio)+"\n")
     
-    elif int(inputs[0]) == 6:
+    elif int(inputs[0]) == 7:
         pais=str(input("Ingrese el país de interés: "))
         print("AÑO" +"\t"+ "\t"+"PELÍCULA"+"\t"+ "\t"+"DIRECTOR"+"\n"+\
             "------------------------------------------------------")
